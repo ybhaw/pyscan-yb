@@ -38,3 +38,4 @@ for f in files:
 
 - [PyPI Package](https://pypi.org/project/pyscan-yb/)
 - [GitHub Repository](https://github.com/ybhaw/pyscan-yb)
+- [Issue Tracker](https://github.com/ybhaw/pyscan-yb/issues)
