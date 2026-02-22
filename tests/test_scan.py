@@ -19,7 +19,7 @@ def test_finds_py_files_recursively(tmp_path):
 
     result = scan(str(tmp_path))
     assert "top.py" in result
-    assert os.path.join("pkg", "sub", "deep.py") in result
+    assert "pkg/sub/deep.py" in result
 
 
 def test_empty_directory_returns_empty(tmp_path):
@@ -62,7 +62,7 @@ def test_returns_relative_paths(tmp_path):
     (sub / "mod.py").write_text("")
 
     result = scan(str(tmp_path))
-    assert result == [os.path.join("pkg", "mod.py")]
+    assert result == ["pkg/mod.py"]
     # Should not contain absolute paths
     for p in result:
         assert not os.path.isabs(p)
