@@ -18,5 +18,8 @@ venv/
 .vscode/
 *.swp
 
+# MkDocs
+site/
+
 # OS
 .DS_Store
