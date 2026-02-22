@@ -16,3 +16,17 @@ pyscan-yb = "pyscan_yb.cli:main"
 python-source = "python"
 module-name = "pyscan_yb._pyscan_yb"
 features = ["pyo3/extension-module"]
+
+[tool.black]
+target-version = ["py39"]
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.mypy]
+python_version = "3.9"
+ignore_missing_imports = true

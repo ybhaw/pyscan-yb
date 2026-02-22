@@ -17,7 +17,8 @@ def main():
         help="Directory to scan (default: current directory)",
     )
     parser.add_argument(
-        "-q", "--quiet",
+        "-q",
+        "--quiet",
         action="store_true",
         help="Quiet mode: only print file paths, no messages",
     )

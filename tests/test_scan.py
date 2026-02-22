@@ -40,7 +40,14 @@ def test_ignores_pycache(tmp_path):
 def test_ignores_system_files(tmp_path):
     (tmp_path / "good.py").write_text("")
 
-    for dirname in [".git", ".venv", "venv", ".mypy_cache", ".pytest_cache", "node_modules"]:
+    for dirname in [
+        ".git",
+        ".venv",
+        "venv",
+        ".mypy_cache",
+        ".pytest_cache",
+        "node_modules",
+    ]:
         d = tmp_path / dirname
         d.mkdir()
         (d / "hidden.py").write_text("")

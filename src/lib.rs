@@ -54,7 +54,7 @@ pub fn scan_directory(path: &str) -> Vec<String> {
         }
 
         if let Ok(rel) = file_path.strip_prefix(base) {
-            results.push(rel.to_string_lossy().to_string());
+            results.push(rel.to_string_lossy().replace('\\', "/"));
         }
     }
 
