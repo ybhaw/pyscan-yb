@@ -20,20 +20,19 @@ const SKIP_NAMES: &[&str] = &[
 const SKIP_EXTENSIONS: &[&str] = &["pyc", "pyo"];
 
 fn should_skip(name: &str) -> bool {
-    SKIP_NAMES.iter().any(|s| name == *s || name.ends_with(".egg-info"))
+    SKIP_NAMES
+        .iter()
+        .any(|s| name == *s || name.ends_with(".egg-info"))
 }
 
 pub fn scan_directory(path: &str) -> Vec<String> {
     let base = Path::new(path);
     let mut results = Vec::new();
 
-    for entry in WalkDir::new(path)
-        .into_iter()
-        .filter_entry(|e| {
-            let name = e.file_name().to_string_lossy();
-            !should_skip(&name)
-        })
-    {
+    for entry in WalkDir::new(path).into_iter().filter_entry(|e| {
+        let name = e.file_name().to_string_lossy();
+        !should_skip(&name)
+    }) {
         let entry = match entry {
             Ok(e) => e,
             Err(_) => continue,
