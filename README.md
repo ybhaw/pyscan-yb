@@ -3,7 +3,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/pyscan-yb)](https://pypi.org/project/pyscan-yb/)
 [![CI](https://img.shields.io/github/actions/workflow/status/ybhaw/pyscan-yb/ci.yml?branch=main&label=CI)](https://github.com/ybhaw/pyscan-yb/actions)
 [![Python versions](https://img.shields.io/pypi/pyversions/pyscan-yb)](https://pypi.org/project/pyscan-yb/)
-[![License](https://img.shields.io/pypi/l/pyscan-yb)](https://github.com/ybhaw/pyscan-yb/blob/main/LICENSE)
+[![License](https://img.shields.io/github/license/ybhaw/pyscan-yb)](https://github.com/ybhaw/pyscan-yb/blob/main/LICENSE)
 
 A fast Python file scanner written in Rust.
 
