@@ -1,4 +1,4 @@
-# Project Plan: pyscan
+# Project Plan: pyscan-yb
 
 > A fast Python file scanner written in Rust, importable as a Python library and usable as a CLI. Configurable via `pyproject.toml`.
 
@@ -7,7 +7,7 @@
 Given a folder:
 - Finds all Python files (`.py`) recursively
 - Respects `.gitignore` by default
-- Reads config from `pyproject.toml` `[tool.pyscan]` section
+- Reads config from `pyproject.toml` `[tool.pyscan-yb]` section
 - Supports whitelist/blacklist for directories
 - Supports named scan profiles (e.g., "source only", "tests only", "ci")
 - Ignores system files by default (`__pycache__`, `.DS_Store`, `.pyc`, `.egg-info`, `.tox`, `.venv`, `.mypy_cache`)
@@ -18,7 +18,7 @@ Given a folder:
 *"fd-like speed, but as a Python library you can `import` and configure via `pyproject.toml`."*
 
 Key differentiators vs `find`, `fd`, `git ls-files`:
-- **Python-native API** -- `from pyscan import scan; files = scan("src")`
+- **Python-native API** -- `from pyscan_yb import scan; files = scan("src")`
 - **pyproject.toml-aware** -- respects project-level include/exclude config where Python tools live
 - **Profile system** -- named configurations for different scan contexts (linting, testing, CI)
 - **Zero Python dependencies** -- Rust handles everything natively
@@ -43,12 +43,12 @@ Key differentiators vs `find`, `fd`, `git ls-files`:
 
 Since Rust handles gitignore (`ignore` crate), color (`colored` crate), TOML parsing (`toml` crate), and tree formatting natively, ALL features are compiled into a single wheel. No need for `[git]`, `[color]`, `[all]` extras.
 
-`pip install pyscan` gives you everything.
+`pip install pyscan-yb` gives you everything.
 
 ## Project Layout
 
 ```
-pyscan/
+pyscan-yb/
   Cargo.toml
   pyproject.toml
   src/
@@ -57,7 +57,7 @@ pyscan/
     config.rs       # pyproject.toml parsing
     output.rs       # Output formatting (flat, tree, color, JSON)
   python/
-    pyscan/
+    pyscan_yb/
       __init__.py   # Thin wrapper re-exporting Rust module
       cli.py        # CLI entry point (argparse)
   tests/
@@ -68,22 +68,22 @@ pyscan/
 ## Configuration (pyproject.toml)
 
 ```toml
-[tool.pyscan]
+[tool.pyscan-yb]
 default_profile = "standard"
 
-[tool.pyscan.profiles.standard]
+[tool.pyscan-yb.profiles.standard]
 include = ["src", "lib"]
 exclude = ["tests", "docs"]
 respect_gitignore = true
 follow_symlinks = false
 
-[tool.pyscan.profiles.full]
+[tool.pyscan-yb.profiles.full]
 include = []
 exclude = []
 respect_gitignore = false
 follow_symlinks = true
 
-[tool.pyscan.profiles.ci]
+[tool.pyscan-yb.profiles.ci]
 include = ["src"]
 exclude = ["tests/fixtures"]
 respect_gitignore = true
@@ -91,13 +91,13 @@ respect_gitignore = true
 
 Config loading order (highest priority last):
 1. Built-in defaults
-2. `pyproject.toml` `[tool.pyscan]`
+2. `pyproject.toml` `[tool.pyscan-yb]`
 3. CLI flags
 
 ## CLI Design
 
 ```
-pyscan [OPTIONS] [PATH]
+pyscan-yb [OPTIONS] [PATH]
 
 Arguments:
   PATH                    Directory to scan [default: .]
@@ -124,7 +124,7 @@ Defaults:
 ## Python API
 
 ```python
-from pyscan import scan
+from pyscan_yb import scan
 
 # Simple
 files = scan(".")
@@ -147,17 +147,17 @@ result.duration_ms  # int
 ### Phase 1 -- Foundation (v0.1.0) ~2-3 weekends
 - Rust core: recursive walk with `ignore` crate, `.py` filtering, system file exclusion
 - PyO3 bindings: `scan(path) -> list[str]`
-- CLI entry point: `pyscan <path>`
+- CLI entry point: `pyscan-yb <path>`
 - maturin build + wheel publishing
 - Unit tests (Rust) + integration tests (Python)
 - CI pipeline (GitHub Actions): lint, test, build wheels (Linux/macOS/Windows)
 - README, LICENSE, pyproject.toml
 - Publish to PyPI
 
-**Milestone:** `pip install pyscan && pyscan .` works.
+**Milestone:** `pip install pyscan-yb && pyscan-yb .` works.
 
 ### Phase 2 -- Configuration (v0.2.0) ~1 weekend
-- `pyproject.toml` `[tool.pyscan]` config reading
+- `pyproject.toml` `[tool.pyscan-yb]` config reading
 - Whitelist/blacklist folder support
 - `--include` / `--exclude` CLI flags
 
@@ -181,7 +181,7 @@ result.duration_ms  # int
 ### Phase 5 -- Profiles (v0.5.0) ~1-2 weekends
 - Named profiles in `pyproject.toml`
 - `--profile <name>` CLI flag
-- `pyscan --list-profiles` to discover available profiles
+- `pyscan-yb --list-profiles` to discover available profiles
 
 **Milestone:** Teams share standardized scan configurations.
 
@@ -189,7 +189,7 @@ result.duration_ms  # int
 - Comprehensive docs (mkdocs-material)
 - Performance benchmarks vs alternatives (pathlib, find, fd)
 - Shell completions (bash/zsh/fish)
-- `pyscan info` diagnostic command
+- `pyscan-yb info` diagnostic command
 - Stable public API commitment
 
 **Total: ~8-12 weekends to v1.0**
@@ -217,8 +217,8 @@ result.duration_ms  # int
 
 ## Naming
 
-Package name: **pyscan** (check PyPI availability; fallbacks: `pyfind`, `pyfiles`, `pyff`)
-CLI command: **pyscan**
+Package name: **pyscan-yb** (check PyPI availability; fallbacks: `pyfind`, `pyfiles`, `pyff`)
+CLI command: **pyscan-yb**
 
 ## Success Metrics
 

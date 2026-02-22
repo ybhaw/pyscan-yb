@@ -1,6 +1,6 @@
 import os
 
-from pyscan import scan
+from pyscan_yb import scan
 
 
 def test_finds_py_files_in_flat_dir(tmp_path):

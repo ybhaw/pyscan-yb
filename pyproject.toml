@@ -3,16 +3,16 @@ requires = ["maturin>=1.0,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "pyscan"
+name = "pyscan-yb"
 version = "0.1.0"
 description = "A fast Python file scanner written in Rust"
 requires-python = ">=3.9"
 license = "MIT"
 
 [project.scripts]
-pyscan = "pyscan.cli:main"
+pyscan-yb = "pyscan_yb.cli:main"
 
 [tool.maturin]
 python-source = "python"
-module-name = "pyscan._pyscan"
+module-name = "pyscan_yb._pyscan_yb"
 features = ["pyo3/extension-module"]

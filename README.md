@@ -1,4 +1,4 @@
-# pyscan
+# pyscan-yb
 
 A fast Python file scanner written in Rust.
 
@@ -17,19 +17,19 @@ maturin develop
 
 ```bash
 # Scan current directory
-pyscan
+pyscan-yb
 
 # Scan a specific path
-pyscan /path/to/project
+pyscan-yb /path/to/project
 
 # Quiet mode (paths only)
-pyscan -q /path/to/project
+pyscan-yb -q /path/to/project
 ```
 
 ### Python API
 
 ```python
-from pyscan import scan
+from pyscan_yb import scan
 
 files = scan(".")
 for f in files:

@@ -1,10 +1,10 @@
 [package]
-name = "pyscan"
+name = "pyscan-yb"
 version = "0.1.0"
 edition = "2021"
 
 [lib]
-name = "_pyscan"
+name = "_pyscan_yb"
 crate-type = ["cdylib"]
 
 [dependencies]

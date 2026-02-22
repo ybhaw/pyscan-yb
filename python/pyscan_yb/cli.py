@@ -2,12 +2,12 @@ import argparse
 import os
 import sys
 
-from pyscan import scan
+from pyscan_yb import scan
 
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="pyscan",
+        prog="pyscan-yb",
         description="A fast Python file scanner",
     )
     parser.add_argument(

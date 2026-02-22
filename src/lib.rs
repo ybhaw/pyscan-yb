@@ -69,7 +69,7 @@ fn scan(path: &str) -> Vec<String> {
 }
 
 #[pymodule]
-fn _pyscan(m: &Bound<'_, PyModule>) -> PyResult<()> {
+fn _pyscan_yb(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(scan, m)?)?;
     Ok(())
 }
