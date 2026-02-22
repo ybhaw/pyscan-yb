@@ -1,0 +1,15 @@
+[package]
+name = "pyscan"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "_pyscan"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.25", features = ["extension-module"] }
+walkdir = "2"
+
+[dev-dependencies]
+tempfile = "3"
