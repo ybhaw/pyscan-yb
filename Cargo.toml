@@ -8,7 +8,7 @@ name = "_pyscan_yb"
 crate-type = ["cdylib"]
 
 [dependencies]
-pyo3 = { version = "0.25", features = ["extension-module"] }
+pyo3 = { version = "0.25", features = ["extension-module", "generate-import-lib"] }
 walkdir = "2"
 
 [dev-dependencies]
