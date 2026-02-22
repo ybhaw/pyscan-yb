@@ -54,10 +54,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install maturin and build
+      - name: Install package and test dependencies
         run: |
           pip install maturin pytest
-          maturin develop
+          pip install .
 
       - name: Run Python tests
         run: pytest tests/ -v
